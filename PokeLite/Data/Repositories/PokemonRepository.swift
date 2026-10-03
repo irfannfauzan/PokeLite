@@ -1,23 +1,23 @@
 //
-//  PokemonRepositoriy.swift
+//  PokemonRepository.swift
 //  PokeLite
 //
 //  Created by Vokal-Ican on 03/10/26.
 //
 
-
 import Foundation
 
-final class PokemonRepositoriy: PokemonRepositoryProtocol {
+final class PokemonRepository: PokemonRepositoryProtocol {
     private let apiClient: APIClientProtocol
     
     init(apiClient: APIClientProtocol) {
         self.apiClient = apiClient
     }
     
-    func getPokemon() async throws -> [Pokemon] {
-        let response: [PokemonDTO] = try await apiClient.get(.getPokemon)
+    func fetchPokemon() async throws -> [Pokemon] {
+        let response: [PokemonDTO] = try await apiClient.get(.fetchPokemon)
         let products = response.map { $0.toDomain() }
         return products
     }
 }
+
