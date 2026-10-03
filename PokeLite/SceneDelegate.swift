@@ -22,9 +22,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let apiClient = APIClient()
         let repository = PokemonRepository(apiClient: apiClient)
         let fetchPokemon = FetchPokemonUseCase(repository: repository)
+        let fetchPokemonDetail = FetchPokemonDetailUseCase(repository: repository)
+
         let viewModel = PokemonViewModel(fetchPokemonUseCase: fetchPokemon)
 
-        let pokemonView = PokemonListViewController(viewModel: viewModel)
+        let pokemonView = PokemonListViewController(
+            viewModel: viewModel,
+            makeDetailViewController: { id in
+                let detailViewModel = PokemonDetailViewModel(pokemonId: id, fetchPokemonDetailUseCase: fetchPokemonDetail)
+                let detailViewController = PokemonDetailViewController(viewModel: detailViewModel)
+                detailViewController.hidesBottomBarWhenPushed = true
+                return detailViewController
+            }
+        )
+        
         let tabBarController = TabBarViewController(pokemonListViewController: pokemonView)
 
         window.rootViewController = tabBarController

@@ -1,19 +1,19 @@
 //
-//  FetchPokemon.swift
+//  FetchPokemonDetail.swift
 //  PokeLite
 //
 //  Created by Vokal-Ican on 03/10/26.
 //
 
-final class FetchPokemonUseCase {
+final class FetchPokemonDetailUseCase {
     private let repository: PokemonRepositoryProtocol
     
     init(repository: PokemonRepositoryProtocol) {
         self.repository = repository
     }
     
-    func fetchPokemon() async throws -> [Pokemon] {
-        try await repository.fetchPokemon()
+    func fetchPokemonDetail(id: Int) async throws -> Pokemon {
+        try await repository.fetchPokemonDetail(id: id)
     }
     
 }

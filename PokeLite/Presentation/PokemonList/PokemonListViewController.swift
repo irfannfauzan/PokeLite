@@ -10,14 +10,16 @@ class PokemonListViewController: UIViewController {
     
     private let viewModel: PokemonViewModel
     
+    private let makeDetailViewController: (Int) -> UIViewController
     
-    init(viewModel: PokemonViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder){
-        fatalError("")
+    init(viewModel: PokemonViewModel, makeDetailViewController: @escaping (Int) -> UIViewController) {
+            self.viewModel = viewModel
+            self.makeDetailViewController = makeDetailViewController
+            super.init(nibName: nil, bundle: nil)
+        }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     private lazy var collectionView: UICollectionView = {
@@ -61,8 +63,8 @@ class PokemonListViewController: UIViewController {
         appereance.configureWithOpaqueBackground()
         appereance.backgroundColor = .systemRed
         appereance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.scrollEdgeAppearance = appereance
-        navigationController?.navigationBar.standardAppearance = appereance
+        navigationItem.standardAppearance = appereance
+        navigationItem.scrollEdgeAppearance = appereance
         navigationController?.navigationBar.tintColor = .white
         
         view.addSubview(collectionView)
@@ -150,8 +152,8 @@ extension PokemonListViewController: UICollectionViewDelegateFlowLayout {
 
 extension PokemonListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let pokemon = viewModel.pokemon[indexPath.item]
-        print("tapped: \(pokemon.name)")
+        let detailPokemon = makeDetailViewController(indexPath.item + 1)
+        navigationController?.pushViewController(detailPokemon, animated: true)
     }
 }
 

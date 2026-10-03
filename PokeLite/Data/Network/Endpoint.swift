@@ -10,6 +10,7 @@ import Foundation
 
 enum Endpoint {
     case fetchPokemon
+    case fetchDetailPokemon(id: Int)
     
     private static let baseURL = "https://pokeapi.co/api/v2/pokemon"
     
@@ -20,6 +21,8 @@ enum Endpoint {
             let components = URLComponents(string: Self.baseURL)
             return components?.url
             
+        case.fetchDetailPokemon(let id):
+            return URL(string: "\(Self.baseURL)/\(id)")
         }
     }
 }
