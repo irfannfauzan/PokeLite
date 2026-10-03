@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let pokemonView = PokemonListViewController(
             viewModel: viewModel,
             makeDetailViewController: { id in
-                let detailViewModel = PokemonDetailViewModel(pokemonId: id, fetchPokemonDetailUseCase: fetchPokemonDetail)
+                let detailViewModel = PokemonDetailViewModel(fetchPokemonDetailUseCase: fetchPokemonDetail,pokemonId: id)
                 let detailViewController = PokemonDetailViewController(viewModel: detailViewModel)
                 detailViewController.hidesBottomBarWhenPushed = true
                 return detailViewController

@@ -17,20 +17,19 @@ final class PokemonDetailViewModel {
     private let fetchPokemonDetailUseCase: FetchPokemonDetailUseCase
     let pokemonId: Int
     
-    init(pokemonId: Int, fetchPokemonDetailUseCase: FetchPokemonDetailUseCase) {
-        self.pokemonId = pokemonId
+    init(fetchPokemonDetailUseCase: FetchPokemonDetailUseCase, pokemonId: Int) {
         self.fetchPokemonDetailUseCase = fetchPokemonDetailUseCase
+        self.pokemonId = pokemonId
     }
     
     @MainActor
     func loadDetail() async {
         state = .loading
         do {
-            let product = try await fetchPokemonDetailUseCase.fetchPokemonDetail(id: pokemonId)
-            state = .loaded(product)
+            let result = try await fetchPokemonDetailUseCase.fetchPokemonDetail(id: pokemonId)
+            state = .loaded(result)
         } catch {
             state = .error(error.localizedDescription)
         }
     }
 }
-

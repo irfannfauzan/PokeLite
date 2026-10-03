@@ -37,8 +37,8 @@ class PokemonDetailViewController: UIViewController {
         let imgView = UIImageView()
         imgView.contentMode = .scaleAspectFill
         imgView.image = UIImage(named: "bulbasaur")
-        imgView.heightAnchor.constraint(equalToConstant: 200).isActive = true
-        imgView.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        imgView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        imgView.widthAnchor.constraint(equalToConstant: 250).isActive = true
         imgView.translatesAutoresizingMaskIntoConstraints = false
         return imgView
     }()
