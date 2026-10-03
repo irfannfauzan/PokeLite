@@ -80,8 +80,8 @@ final class PokeGridCell: UICollectionViewCell {
         ])
     }
 
-    func configure(with pokemon: Pokemon) {
+    func configure(with pokemon: Pokemon, number: Int) {
         nameLabel.text = pokemon.name.capitalized
-        numberLabel.text = String(format: "#%03d", pokemon.id)
+        numberLabel.text = String(format: "#%03d", number)
     }
 }

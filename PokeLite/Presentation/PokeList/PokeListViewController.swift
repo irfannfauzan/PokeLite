@@ -9,10 +9,10 @@ import UIKit
 class PokeListViewController: UIViewController {
 
     private let pokemons: [Pokemon] = [
-        Pokemon(id: 1, name: "bulbasaur", imageURL: nil),
-        Pokemon(id: 2, name: "ivysaur", imageURL: nil),
-        Pokemon(id: 3, name: "venusaur", imageURL: nil),
-        Pokemon(id: 4, name: "charmander", imageURL: nil)
+        Pokemon(name: "bulbasaur", url: nil),
+        Pokemon(name: "ivysaur", url: nil),
+        Pokemon(name: "venusaur", url: nil),
+        Pokemon(name: "charmander", url: nil)
     ]
 
     private let appBarTitle: UILabel = {
@@ -71,7 +71,7 @@ extension PokeListViewController: UICollectionViewDataSource {
         ) as? PokeGridCell else {
             return UICollectionViewCell()
         }
-        cell.configure(with: pokemons[indexPath.item])
+        cell.configure(with: pokemons[indexPath.item],number: indexPath.item + 1)
         return cell
     }
 }
