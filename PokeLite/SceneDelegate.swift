@@ -18,9 +18,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let view = PokeListViewController()
-        let navigationController = UINavigationController(rootViewController: view)
-        window.rootViewController = navigationController
+
+        let apiClient = APIClient()
+        let repository = PokemonRepository(apiClient: apiClient)
+        let fetchPokemon = FetchPokemonUseCase(repository: repository)
+        let viewModel = PokemonViewModel(fetchPokemonUseCase: fetchPokemon)
+
+        let pokemonView = PokemonListViewController(viewModel: viewModel)
+        let tabBarController = TabBarViewController(pokemonListViewController: pokemonView)
+
+        window.rootViewController = tabBarController
         self.window = window
         window.makeKeyAndVisible()
     }

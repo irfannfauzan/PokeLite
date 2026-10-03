@@ -17,7 +17,7 @@ enum Endpoint {
         switch self {
             
         case.fetchPokemon:
-            let components = URLComponents(string: "\(Self.baseURL)")
+            let components = URLComponents(string: Self.baseURL)
             return components?.url
             
         }

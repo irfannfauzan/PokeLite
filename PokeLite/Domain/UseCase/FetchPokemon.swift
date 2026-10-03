@@ -5,14 +5,14 @@
 //  Created by Vokal-Ican on 03/10/26.
 //
 
-final class FetchPokemon {
+final class FetchPokemonUseCase {
     private let repository : PokemonRepositoryProtocol
     
     init(repository: PokemonRepositoryProtocol) {
         self.repository = repository
     }
     
-    func execute() async throws -> [Pokemon] {
+    func fetchPokemon() async throws -> [Pokemon] {
         try await repository.fetchPokemon()
     }
     

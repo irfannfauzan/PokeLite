@@ -15,9 +15,9 @@ final class PokemonRepository: PokemonRepositoryProtocol {
     }
     
     func fetchPokemon() async throws -> [Pokemon] {
-        let response: [PokemonDTO] = try await apiClient.get(.fetchPokemon)
-        let products = response.map { $0.toDomain() }
-        return products
+        let response: PokemonListResponseDTO = try await apiClient.get(.fetchPokemon)
+        let pokemon = response.results.map { $0.toDomain() }
+        return pokemon
     }
 }
 
