@@ -84,3 +84,10 @@ extension PokeListViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension PokeListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let pokemon = pokemons[indexPath.item]
+        print("tapped: \(pokemon.name)")
+    }
+}
+
