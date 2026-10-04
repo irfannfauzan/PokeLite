@@ -7,6 +7,21 @@
 
 import Foundation
 
+struct PokemonSpeciesColorDTO: Codable {
+    let name: String
+}
+
+struct PokemonSpeciesDTO: Codable {
+    let name: String
+    let color: PokemonSpeciesColorDTO
+}
+
+extension PokemonSpeciesDTO {
+    func toDomain() -> PokemonSpecies {
+        PokemonSpecies(name: name, color: PokemonSpeciesColor(name: color.name))
+    }
+}
+
 struct PokemonDTO: Codable {
     let name: String
     let url: String?

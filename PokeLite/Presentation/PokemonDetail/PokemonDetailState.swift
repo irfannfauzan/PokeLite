@@ -9,7 +9,7 @@ import Foundation
 
 enum PokemonDetailState {
     case loading
-    case loaded(Pokemon)
+    case loaded(PokemonSpecies)
     case empty
     case error(String)
 }

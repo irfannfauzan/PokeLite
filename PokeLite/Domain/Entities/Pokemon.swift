@@ -7,7 +7,16 @@
 
 import Foundation
 
-struct Pokemon {
+struct PokemonSpeciesColor: Equatable, Hashable {
+    let name: String
+}
+
+struct PokemonSpecies: Equatable, Hashable {
+    let name: String
+    let color: PokemonSpeciesColor
+}
+
+struct Pokemon: Equatable, Hashable {
     let name: String
     let url: URL?
 }

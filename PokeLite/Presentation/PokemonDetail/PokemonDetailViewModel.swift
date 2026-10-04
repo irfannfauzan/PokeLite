@@ -27,6 +27,7 @@ final class PokemonDetailViewModel {
         state = .loading
         do {
             let result = try await fetchPokemonDetailUseCase.fetchPokemonDetail(id: pokemonId)
+            print("\(result)")
             state = .loaded(result)
         } catch {
             state = .error(error.localizedDescription)

@@ -42,15 +42,7 @@ final class TabBarViewController: UITabBarController {
         )
         let favoriteNav = UINavigationController(rootViewController: favoriteVC)
 
-        let settingsVC = SettingsViewController()
-        settingsVC.tabBarItem = UITabBarItem(
-            title: "Settings",
-            image: UIImage(systemName: "gearshape"),
-            selectedImage: UIImage(systemName: "gearshape.fill")
-        )
-        let settingsNav = UINavigationController(rootViewController: settingsVC)
-
-        viewControllers = [listNav, favoriteNav, settingsNav]
+        viewControllers = [listNav, favoriteNav]
     }
 
     private func setupAppearance() {

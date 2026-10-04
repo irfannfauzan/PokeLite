@@ -12,7 +12,7 @@ final class FetchPokemonDetailUseCase {
         self.repository = repository
     }
     
-    func fetchPokemonDetail(id: Int) async throws -> Pokemon {
+    func fetchPokemonDetail(id: Int) async throws -> PokemonSpecies {
         try await repository.fetchPokemonDetail(id: id)
     }
     
